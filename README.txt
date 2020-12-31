@@ -14,6 +14,7 @@ System Requirements:
 main.py ---->
 
  It’s an application which allows each user to have an individual data-store to store data. 
+ If he/she is a new user than it create a new data store file.   
  Note: In this app I used Employee data.
  This application can perform three main operations create, read, delete. These operations are defined and declared in operations.py file.
 
