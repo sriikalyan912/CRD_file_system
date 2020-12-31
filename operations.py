@@ -66,7 +66,7 @@ def create(UserName = 'Data'):
 
         while True:
 
-            key = input('\nKey:\t')
+            key = input('\nEmployee Id (Key):\t')
 
             if not key.isalpha():
                 print('\nKey can\'t be nothing or should not contains Space, Numbers, SpecialCharacters!')
