@@ -11,13 +11,13 @@ System Requirements:
 * Python 3.6 or more	      *
 *******************************
 
-main.py ---->
+main.py --->
 
  It’s an application which allows each user to have an individual data-store to store data. 
  Note: In this app I used Employee data.
  This application can perform three main operations create, read, delete. These operations are defined and declared in operations.py file.
 
-operations.py ---->
+operations.py --->
 
 create ()
  This function creates a new key-value and stores into a local file with the user’s name.
