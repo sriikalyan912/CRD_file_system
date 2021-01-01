@@ -170,7 +170,7 @@ def read(UserName = 'Data'):
     data = findUser(UserName)[0]
 
     if len(data) == 0:
-        print('\nyou can\'t perform this Operations. The DataStore is EMPTY!')
+        print('\Unable to performe this operations. The DataStore is EMPTY!')
         return
     
     while True:
@@ -208,7 +208,7 @@ def delete(UserName = 'Data'):
     while True:
 
         if len(data) == 0:
-            print('\nyou can\'t perform this Operations. The DataStore is already EMPTY!')
+            print('\nUnable to perform this Operations. The DataStore is already EMPTY!')
             return
 
         else:
