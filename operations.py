@@ -1,19 +1,19 @@
+from re import search
 from os import mkdir,path
 from json import load, loads, dump
 from time import time
-from re import search
 
 
-def findUser(UserName):
-
-    if not path.isdir('Save'):
-        mkdir('Save')
+def findUser(UserName, Path):
+    
+    if not path.isdir(Path):
+        mkdir(Path)
 
     if UserName == 'Data':
 
-        if path.isfile('Save/Data.json'):
+        if path.isfile(Path+'/Data.json'):
 
-            with open('Save/Data.json', 'r+') as f:
+            with open(Path+'/Data.json', 'r+') as f:
                 dataS = f.read()
                 try:
                     data = load(f)
@@ -25,7 +25,7 @@ def findUser(UserName):
            
         else:
 
-            with open('Save/Data.json', 'w') as f:
+            with open(Path+'/Data.json', 'w') as f:
 
                 f.write('{}')
                 data = {}
@@ -34,9 +34,9 @@ def findUser(UserName):
 
     else:
 
-        if path.isfile('Save/'+UserName+'.json'):
+        if path.isfile(Path+'/'+UserName+'.json'):
 
-            with open('Save/'+UserName+'.json', 'r') as f:
+            with open(Path+'/'+UserName+'.json', 'r') as f:
 
                 dataS = f.read()
                 try:
@@ -50,7 +50,7 @@ def findUser(UserName):
 
         else:
 
-            with open('Save/'+UserName+'.json', 'w') as f:
+            with open(Path+'/'+UserName+'.json', 'w') as f:
 
                 f.write('{}')
                 data = {}
@@ -58,15 +58,15 @@ def findUser(UserName):
     
     return(data,fileSize)
 
-def create(UserName = 'Data'):
+def create(Path,UserName = 'Data'):
 
-    data,fileSize = findUser(UserName)
+    data,fileSize = findUser(UserName, Path)
 
     while True:
 
         while True:
 
-            key = input('\nEmployee Id (Key):\t')
+            key = input('\nKey:\t')
 
             if not key.isalpha():
                 print('\nKey can\'t be nothing or should not contains Space, Numbers, SpecialCharacters!')
@@ -131,7 +131,7 @@ def create(UserName = 'Data'):
         
     while True:
 
-        timelimite = input('\nTime Limite [sec] (optional):\t')
+        timelimite = input('\nTime Limite (sec):\t')
 
         if timelimite == '':
             value['TimeLimit'] = None
@@ -157,7 +157,7 @@ def create(UserName = 'Data'):
 
         fileSize = newFileSize
 
-        with open('Save/'+UserName+'.json', 'w+') as f:
+        with open(Path+'/'+UserName+'.json', 'w+') as f:
             dump(data, f, indent=2)
 
         print('\nNew Value added Successfully!')
@@ -165,19 +165,19 @@ def create(UserName = 'Data'):
 
         print("\nSorry! File size limit exceeded.")
 
-def read(UserName = 'Data'):
+def read(Path,UserName = 'Data'):
 
-    data = findUser(UserName)[0]
+    data = findUser(UserName, Path)[0]
 
     if len(data) == 0:
-        print('\nUnable to performe this operations. The DataStore is EMPTY!')
+        print('\nyou can\'t perform this Operations. The DataStore is EMPTY!')
         return
     
     while True:
         
         key = input('\nEmployeID to Search:\t')
 
-        with open('Save/'+UserName+'.json','r') as f:
+        with open(Path+'/'+UserName+'.json','r') as f:
             data = load(f)
 
         if len(data) == 0:
@@ -198,17 +198,17 @@ def read(UserName = 'Data'):
 
         return None
 
-def delete(UserName = 'Data'):
+def delete(Path,UserName = 'Data'):
 
-    data,fileSize = findUser(UserName)
+    data,fileSize = findUser(UserName,Path)
 
-    with open('Save/'+UserName+'.json','r') as f:
+    with open(Path+'/'+UserName+'.json','r') as f:
         data = load(f)
 
     while True:
 
         if len(data) == 0:
-            print('\nUnable to perform this Operations. The DataStore is already EMPTY!')
+            print('\nyou can\'t perform this Operations. The DataStore is already EMPTY!')
             return
 
         else:
@@ -225,7 +225,7 @@ def delete(UserName = 'Data'):
                         fileSize = fileSize - len(str(data[key]).encode('utf-8'))
                         del data[key]
 
-                        with  open('Save/'+UserName+'.json', 'w') as f:
+                        with  open(Path+'/'+UserName+'.json', 'w') as f:
                             dump(data, f, indent=2)
                         print('\nValue Deleted Successfully!')
                         break

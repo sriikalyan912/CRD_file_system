@@ -25,7 +25,7 @@ while True:
             values = read(UserName)
             
             if values != None:
-                print()
+                print('\n')
                 keys = list(values.keys())[:-1]
                 vals = list(values.values())[:-1]
                 for i,j in zip(keys,vals):
@@ -47,7 +47,7 @@ while True:
         redo = input('\nWant to continue [y/n]?\t').lower()
 
         if redo == 'n':
-            quit()
+            exit()
         elif redo == 'y':
             break
         else:
