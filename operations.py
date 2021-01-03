@@ -66,10 +66,10 @@ def create(Path,UserName = 'Data'):
 
         while True:
 
-            key = input('\nKey:\t')
+            key = input('\nEmployee ID (Key):\t')
 
-            if not key.isalpha():
-                print('\nKey can\'t be nothing or should not contains Space, Numbers, SpecialCharacters!')
+            if not key.isalnum():
+                print('\nKey can\'t be nothing or should not contains Space, or SpecialCharacters!')
                 continue
 
             else:
@@ -87,7 +87,7 @@ def create(Path,UserName = 'Data'):
         else:
             print('\nOMG! the given key is too long. length(key) > 32char')
 
-    print('\n(values)')
+    print('\n(values)\n\nNote: Use \'Name\' to check if the value is capped at 16kb.')
 
     value = {}
         
@@ -95,8 +95,8 @@ def create(Path,UserName = 'Data'):
 
         EmployeName = input('\nName:\t')
 
-        if not EmployeName.isalpha():
-            print('\nName should not contains Space, Numbers, or SpecialCharacters!')
+        if len(EmployeName) == 0:
+            print('\nName can\'t be Empty!')
             continue
 
         else:
